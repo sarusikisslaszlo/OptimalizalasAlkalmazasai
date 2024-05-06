@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Data</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <button id="startTimer">Start Timer</button>
+    <div id="timer">5:00</div>
+</div>
+<script>
+    document.getElementById('startTimer').addEventListener('click', function () {
+        var timer = 300; // 5 minutes in seconds
+        var interval = setInterval(function () {
+            var minutes = Math.floor(timer / 60);
+            var seconds = timer % 60;
+
+            // Display the timer in the format mm:ss
+            document.getElementById('timer').innerText = minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+
+            // Decrement timer
+            timer--;
+
+            // If timer reaches 0, clear the interval
+            if (timer < 0) {
+                clearInterval(interval);
+            }
+        }, 1000); // Update timer every second
+    });
+</script>
+</body>
+</html>
